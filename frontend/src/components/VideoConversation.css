@@ -32,8 +32,18 @@
 }
 
 :root{
+  /* CVI Portal Colors */
   --tan: #efe4d0;        /* tweak to your tan */
   --ink: #000;           /* black lines/shadow */
+  
+  /* Button Variables */
+  --button-font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  --button-font-weight: 400;
+  --button-letter-spacing: 0.1em;
+  
+  /* Video Controls */
+  --control-button-size: 48px;
+  --control-button-gap: 1rem;
 }
 
 /* The tan box */
@@ -209,7 +219,7 @@
   padding: 0;
   border-radius: 0;
   box-shadow: none;
-  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  font-family: var(--button-font-family);
 }
 
 .connect-btn:hover {
@@ -246,7 +256,7 @@
   font-weight: 700;
   letter-spacing: 0.08em; /* 20% reduction from 0.1em */
   text-transform: uppercase;
-  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  font-family: var(--button-font-family);
   white-space: nowrap;
 }
 

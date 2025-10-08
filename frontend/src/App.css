@@ -1,3 +1,40 @@
+/* CSS Variables */
+:root {
+  /* Colors */
+  --color-primary: #FF6E82;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-text: #000;
+  
+  /* Typography */
+  --font-family-buttons: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  --font-weight-light: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --letter-spacing-wide: 0.06em;
+  --letter-spacing-normal: 0.035em;
+  
+  /* Button Styles */
+  --button-padding: 0.75rem 1rem;
+  --button-padding-large: 0.875rem 1.75rem;
+  --button-border: 1px solid var(--color-black);
+  --button-border-thick: 1.4px solid var(--color-black);
+  --button-shadow: 2px 2px 0px var(--color-black);
+  --button-shadow-small: 1px 1px 0px var(--color-black);
+  --button-shadow-large: 4px 4px 0px var(--color-black);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  /* Transitions */
+  --transition-fast: all 0.2s ease;
+  --transition-normal: all 0.3s ease;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -160,20 +197,20 @@ body {
 }
 
 .btn-login {
-  background: #fff;
-  color: #000;
-  border: 1px solid #000;
-  border-right: 1px solid #000;
-  padding: 0.75rem 1rem;
+  background: var(--color-white);
+  color: var(--color-text);
+  border: var(--button-border);
+  border-right: var(--button-border);
+  padding: var(--button-padding);
   border-radius: 0;
   font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 2px 2px 0px #000;
-  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  transition: var(--transition-fast);
+  box-shadow: var(--button-shadow);
+  font-family: var(--font-family-buttons);
   position: relative;
   display: flex;
   align-items: center;
@@ -185,29 +222,29 @@ body {
 
 .btn-login:hover {
   transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0px #000;
+  box-shadow: var(--button-shadow-small);
 }
 
 .btn-login:active {
   transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px #000;
+  box-shadow: 0px 0px 0px var(--color-black);
 }
 
 .btn-get-started {
-  background: #FF6E82;
-  color: #000;
-  border: 1px solid #000;
-  border-left: 1px solid #000;
-  padding: 0.75rem 1rem;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border: var(--button-border);
+  border-left: var(--button-border);
+  padding: var(--button-padding);
   border-radius: 0;
   font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 2px 2px 0px #000;
-  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  transition: var(--transition-fast);
+  box-shadow: var(--button-shadow);
+  font-family: var(--font-family-buttons);
   position: relative;
   display: flex;
   align-items: center;
@@ -218,14 +255,14 @@ body {
 }
 
 .btn-get-started:hover {
-  background: #FF6E82;
+  background: var(--color-primary);
   transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0px #000;
+  box-shadow: var(--button-shadow-small);
 }
 
 .btn-get-started:active {
   transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px #000;
+  box-shadow: 0px 0px 0px var(--color-black);
 }
 
 /* Hero Section */
@@ -258,31 +295,31 @@ body {
 }
 
 .btn-signup {
-  background: #FF6E82;
-  color: #000;
-  border: 1.4px solid #000; /* 30% reduction from 2px */
-  padding: 0.875rem 1.75rem; /* 30% reduction */
+  background: var(--color-primary);
+  color: var(--color-text);
+  border: var(--button-border-thick);
+  padding: var(--button-padding-large);
   border-radius: 0;
-  font-size: 0.7rem; /* 30% reduction from 1rem */
-  font-weight: 400;
-  letter-spacing: 0.035em; /* 30% reduction from 0.05em */
+  font-size: 0.7rem;
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--letter-spacing-normal);
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 2.8px 2.8px 0px #000; /* 30% reduction */
-  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  transition: var(--transition-fast);
+  box-shadow: var(--button-shadow-large);
+  font-family: var(--font-family-buttons);
   position: relative;
 }
 
 .btn-signup:hover {
-  background: #FF6E82;
-  transform: translate(1.4px, 1.4px); /* 30% reduction */
-  box-shadow: 1.4px 1.4px 0px #000; /* 30% reduction */
+  background: var(--color-primary);
+  transform: translate(1.4px, 1.4px);
+  box-shadow: var(--button-shadow-small);
 }
 
 .btn-signup:active {
-  transform: translate(2.8px, 2.8px); /* 30% reduction */
-  box-shadow: 0px 0px 0px #000;
+  transform: translate(2.8px, 2.8px);
+  box-shadow: 0px 0px 0px var(--color-black);
 }
 
 /* Responsive Design */
