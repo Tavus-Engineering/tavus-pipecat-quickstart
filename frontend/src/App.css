@@ -70,7 +70,7 @@ body {
 
 .logo {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 400;
   color: #000;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -78,11 +78,11 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  border: 2px solid #000;
+  border: 1px solid #000;
   border-right: 1px solid #000;
   background: #fff;
   box-shadow: 2px 2px 0px #000;
-  font-family: 'Courier New', monospace;
+  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
   position: relative;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -115,20 +115,20 @@ body {
   color: #000;
   text-decoration: none;
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   transition: all 0.2s ease;
   text-align: center;
   padding: 0.75rem 1rem;
-  border: 2px solid #000;
+  border: 1px solid #000;
   border-right: 1px solid #000;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
   box-shadow: 2px 2px 0px #000;
-  font-family: 'Courier New', monospace;
+  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
   position: relative;
   height: 44px;
   box-sizing: border-box;
@@ -162,18 +162,18 @@ body {
 .btn-login {
   background: #fff;
   color: #000;
-  border: 2px solid #000;
+  border: 1px solid #000;
   border-right: 1px solid #000;
   padding: 0.75rem 1rem;
   border-radius: 0;
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 2px 2px 0px #000;
-  font-family: 'Courier New', monospace;
+  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
   position: relative;
   display: flex;
   align-items: center;
@@ -194,20 +194,20 @@ body {
 }
 
 .btn-get-started {
-  background: #E96680;
+  background: #FF6E82;
   color: #000;
-  border: 2px solid #000;
+  border: 1px solid #000;
   border-left: 1px solid #000;
   padding: 0.75rem 1rem;
   border-radius: 0;
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 2px 2px 0px #000;
-  font-family: 'Courier New', monospace;
+  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
   position: relative;
   display: flex;
   align-items: center;
@@ -218,7 +218,7 @@ body {
 }
 
 .btn-get-started:hover {
-  background: #ff5a8a;
+  background: #FF6E82;
   transform: translate(1px, 1px);
   box-shadow: 1px 1px 0px #000;
 }
@@ -258,30 +258,30 @@ body {
 }
 
 .btn-signup {
-  background: #E96680;
+  background: #FF6E82;
   color: #000;
-  border: 2px solid #000;
-  padding: 1.25rem 2.5rem;
+  border: 1.4px solid #000; /* 30% reduction from 2px */
+  padding: 0.875rem 1.75rem; /* 30% reduction */
   border-radius: 0;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: 0.7rem; /* 30% reduction from 1rem */
+  font-weight: 400;
+  letter-spacing: 0.035em; /* 30% reduction from 0.05em */
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 4px 4px 0px #000;
-  font-family: 'Courier New', monospace;
+  box-shadow: 2.8px 2.8px 0px #000; /* 30% reduction */
+  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
   position: relative;
 }
 
 .btn-signup:hover {
-  background: #ff5a8a;
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px #000;
+  background: #FF6E82;
+  transform: translate(1.4px, 1.4px); /* 30% reduction */
+  box-shadow: 1.4px 1.4px 0px #000; /* 30% reduction */
 }
 
 .btn-signup:active {
-  transform: translate(4px, 4px);
+  transform: translate(2.8px, 2.8px); /* 30% reduction */
   box-shadow: 0px 0px 0px #000;
 }
 
@@ -367,7 +367,7 @@ body {
   }
   
   .btn-signup {
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
+    padding: 0.7rem 1.4rem; /* 30% reduction */
+    font-size: 0.63rem; /* 30% reduction */
   }
 }

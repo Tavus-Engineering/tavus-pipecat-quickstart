@@ -209,7 +209,7 @@
   padding: 0;
   border-radius: 0;
   box-shadow: none;
-  font-family: 'Courier New', monospace;
+  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
 }
 
 .connect-btn:hover {
@@ -246,7 +246,7 @@
   font-weight: 700;
   letter-spacing: 0.08em; /* 20% reduction from 0.1em */
   text-transform: uppercase;
-  font-family: 'Courier New', monospace;
+  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
   white-space: nowrap;
 }
 
@@ -298,7 +298,7 @@
   height: 72px;
   stroke-width: 2;
   margin-bottom: 0.5rem;
-  color: #ff4757;
+  color: #FF6E82;
 }
 
 .retry-btn {
@@ -424,7 +424,7 @@
 .control-button.disabled {
   background: rgba(239, 68, 68, 0.2);
   border-color: rgba(239, 68, 68, 0.4);
-  color: #ff4757;
+  color: #FF6E82;
 }
 
 .control-button.disabled:hover:not(:disabled) {
@@ -434,7 +434,7 @@
 .control-button.disconnect {
   background: rgba(239, 68, 68, 0.2);
   border-color: rgba(239, 68, 68, 0.4);
-  color: #ff4757;
+  color: #FF6E82;
 }
 
 .control-button.disconnect:hover:not(:disabled) {

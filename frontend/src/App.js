@@ -31,9 +31,9 @@ function App() {
 
       {/* Hero Section */}
       <section className="hero-section">
-        <h1 className="hero-title">AI Humans, <br />at your service</h1>
-        <p className="hero-subtitle">
-          They're the best of both worlds: the emotional intelligence of humanity, with the reach and reliability of machines.
+        <h1 className="hero-title" style={{ letterSpacing: '-0.06em' }}>AI Humans, <br />at your service</h1>
+        <p className="hero-subtitle" style={{ lineHeight: 1 }}>
+          They're the best of both worlds: <br />the emotional intelligence of humanity,<br /> with the reach and reliability of machines.
         </p>
         <button className="btn-signup">SIGN UP FOR FREE</button>
       </section>
