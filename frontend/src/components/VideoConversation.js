@@ -100,7 +100,7 @@ function VideoConversation() {
   };
 
   return (
-    <div className="cvi-portal-container">
+    <div className={`cvi-portal-container ${connectionState === 'connected' ? 'expanded' : ''}`}>
       <div className="cvi-portal-window">
         <header className="top-header">
           <span className="title">CVI PORTAL</span>
