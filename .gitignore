@@ -1,3 +1,6 @@
+# NOTE: uv.lock and pyproject.toml should be committed (not ignored)
+# They are equivalent to package-lock.json and package.json
+
 # Environment variables
 .env
 .env.local
@@ -16,9 +19,11 @@ __pycache__/
 # Virtual environments
 env/
 venv/
+.venv/          # uv creates .venv by default
 ENV/
 env.bak/
 venv.bak/
+.python-version # uv may create this for Python version pinning
 
 # Distribution / packaging
 .Python
