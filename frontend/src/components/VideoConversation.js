@@ -8,7 +8,6 @@ function VideoConversation() {
   const [error, setError] = useState('');
   const [isMicEnabled, setIsMicEnabled] = useState(true);
   const [isCameraEnabled, setIsCameraEnabled] = useState(true);
-  const [showCharlieLoading, setShowCharlieLoading] = useState(false);
   
   const webrtcClient = useRef(null);
   const remoteVideoRef = useRef(null);
@@ -26,7 +25,6 @@ function VideoConversation() {
   const handleConnect = async () => {
     setHasStarted(true);
     setConnectionState('connecting');
-    setShowCharlieLoading(true);
     await startConversation();
   };
 
@@ -40,25 +38,6 @@ function VideoConversation() {
         console.log('Remote stream received');
         if (remoteVideoRef.current) {
           remoteVideoRef.current.srcObject = remoteStream;
-          
-          // Wait for video to start playing before hiding Charlie loading
-          const video = remoteVideoRef.current;
-          const checkVideoPlaying = () => {
-            if (video.readyState >= 2 && video.videoWidth > 0 && video.videoHeight > 0) {
-              console.log('Remote video is playing, hiding Charlie loading');
-              setShowCharlieLoading(false);
-            } else {
-              // Check again in 100ms if video isn't ready yet
-              setTimeout(checkVideoPlaying, 100);
-            }
-          };
-          
-          // Start checking when video starts loading
-          video.addEventListener('loadeddata', checkVideoPlaying);
-          video.addEventListener('canplay', checkVideoPlaying);
-          
-          // Also check immediately in case video is already ready
-          checkVideoPlaying();
         }
       });
 
@@ -66,11 +45,9 @@ function VideoConversation() {
         console.log('Connection state:', state);
         if (state === 'connected') {
           setConnectionState('connected');
-          // Charlie loading will be hidden when video actually starts playing
         } else if (state === 'failed' || state === 'disconnected') {
           setError('Connection lost');
           setConnectionState('error');
-          setShowCharlieLoading(false);
         }
       });
 
@@ -104,7 +81,6 @@ function VideoConversation() {
     setHasStarted(false);
     setConnectionState('idle');
     setError('');
-    setShowCharlieLoading(false);
   };
 
   const toggleMic = () => {
@@ -124,7 +100,7 @@ function VideoConversation() {
   };
 
   return (
-    <div className={`cvi-portal-container ${connectionState === 'connected' ? 'expanded' : ''}`}>
+    <div className="cvi-portal-container">
       <div className="cvi-portal-window">
         <header className="top-header">
           <span className="title">CVI PORTAL</span>
@@ -176,23 +152,10 @@ function VideoConversation() {
               </div>
             )}
 
-            {showCharlieLoading && (
-              <div className="video-overlay loading-charlie">
-                <div className="charlie-loading-content">
-                  <div className="charlie-headlines">
-                    <h1 className="charlie-line-1">He sees.</h1>
-                    <h1 className="charlie-line-2">He hears.</h1>
-                    <h1 className="charlie-line-3">He understands.</h1>
-                  </div>
-                  <div className="charlie-description">
-                    <p>Meet Charlie, an AI agent that perceives, reacts, and engages in real conversation.</p>
-                    <p>Chat like he's an old friend—or a new one!</p>
-                  </div>
-                  <div className="charlie-loading-spinner">
-                    <div className="spinner"></div>
-                    <p>Preparing video connection...</p>
-                  </div>
-                </div>
+            {connectionState === 'connecting' && (
+              <div className="video-overlay">
+                <div className="spinner"></div>
+                <p>Connecting to AI Assistant...</p>
               </div>
             )}
 
@@ -209,67 +172,69 @@ function VideoConversation() {
                 </button>
               </div>
             )}
-
-            {/* In-video controls - only show when connected */}
-            {hasStarted && connectionState === 'connected' && (
-              <div className="in-video-controls">
-                <button 
-                  className={`in-video-control-button ${!isMicEnabled ? 'disabled' : ''}`}
-                  onClick={toggleMic}
-                  title={isMicEnabled ? 'Mute' : 'Unmute'}
-                >
-                  {isMicEnabled ? (
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-                    </svg>
-                  ) : (
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M19 11h-1.7c0 .74-.16 1.43-.43 2.05l1.23 1.23c.56-.98.9-2.09.9-3.28zm-4.02.17c0-.06.02-.11.02-.17V5c0-1.66-1.34-3-3-3S9 3.34 9 5v.18l5.98 5.99zM4.27 3L3 4.27l6.01 6.01V11c0 1.66 1.33 3 2.99 3 .22 0 .44-.03.65-.08l1.66 1.66c-.71.33-1.5.52-2.31.52-2.76 0-5.3-2.1-5.3-5.1H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c.91-.13 1.77-.45 2.54-.9L19.73 21 21 19.73 4.27 3z"/>
-                    </svg>
-                  )}
-                </button>
-
-                <button 
-                  className={`in-video-control-button ${!isCameraEnabled ? 'disabled' : ''}`}
-                  onClick={toggleCamera}
-                  title={isCameraEnabled ? 'Turn off camera' : 'Turn on camera'}
-                >
-                  {isCameraEnabled ? (
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
-                    </svg>
-                  ) : (
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M21 6.5l-4 4V7c0-.55-.45-1-1-1H9.82L21 17.18V6.5zM3.27 2L2 3.27 4.73 6H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.21 0 .39-.08.54-.18L19.73 21 21 19.73 3.27 2z"/>
-                    </svg>
-                  )}
-                </button>
-
-                <button 
-                  className="in-video-control-button disconnect"
-                  onClick={handleDisconnect}
-                  title="Disconnect"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08c-.18-.17-.29-.42-.29-.7 0-.28.11-.53.29-.71C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28-.79-.74-1.68-1.36-2.66-1.85-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/>
-                  </svg>
-                </button>
-              </div>
-            )}
           </div>
         </div>
       </div>
 
-      {/* Status indicator - Only show when started, but keep it minimal */}
+      {/* Status and Controls Bar - Only show when started */}
       {hasStarted && (
-        <div className="status-indicator-minimal">
-          <span className={`status-dot ${connectionState}`}></span>
-          <span className="status-text">
-            {connectionState === 'connecting' && 'Connecting...'}
-            {connectionState === 'connected' && 'Connected'}
-            {connectionState === 'error' && 'Disconnected'}
-          </span>
+        <div className="video-controls-bar">
+          <div className="status-indicator">
+            <span className={`status-dot ${connectionState}`}></span>
+            <span className="status-text">
+              {connectionState === 'connecting' && 'Connecting...'}
+              {connectionState === 'connected' && 'Connected'}
+              {connectionState === 'error' && 'Disconnected'}
+            </span>
+          </div>
+
+          <div className="video-controls">
+            <button 
+              className={`control-button ${!isMicEnabled ? 'disabled' : ''}`}
+              onClick={toggleMic}
+              title={isMicEnabled ? 'Mute' : 'Unmute'}
+              disabled={connectionState !== 'connected'}
+            >
+              {isMicEnabled ? (
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                  <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 11h-1.7c0 .74-.16 1.43-.43 2.05l1.23 1.23c.56-.98.9-2.09.9-3.28zm-4.02.17c0-.06.02-.11.02-.17V5c0-1.66-1.34-3-3-3S9 3.34 9 5v.18l5.98 5.99zM4.27 3L3 4.27l6.01 6.01V11c0 1.66 1.33 3 2.99 3 .22 0 .44-.03.65-.08l1.66 1.66c-.71.33-1.5.52-2.31.52-2.76 0-5.3-2.1-5.3-5.1H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c.91-.13 1.77-.45 2.54-.9L19.73 21 21 19.73 4.27 3z"/>
+                </svg>
+              )}
+            </button>
+
+            <button 
+              className={`control-button ${!isCameraEnabled ? 'disabled' : ''}`}
+              onClick={toggleCamera}
+              title={isCameraEnabled ? 'Turn off camera' : 'Turn on camera'}
+              disabled={connectionState !== 'connected'}
+            >
+              {isCameraEnabled ? (
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M21 6.5l-4 4V7c0-.55-.45-1-1-1H9.82L21 17.18V6.5zM3.27 2L2 3.27 4.73 6H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.21 0 .39-.08.54-.18L19.73 21 21 19.73 3.27 2z"/>
+                </svg>
+              )}
+            </button>
+
+            <button 
+              className="control-button disconnect"
+              onClick={handleDisconnect}
+              title="Disconnect"
+              disabled={connectionState === 'error'}
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08c-.18-.17-.29-.42-.29-.7 0-.28.11-.53.29-.71C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28-.79-.74-1.68-1.36-2.66-1.85-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/>
+              </svg>
+            </button>
+          </div>
         </div>
       )}
     </div>
