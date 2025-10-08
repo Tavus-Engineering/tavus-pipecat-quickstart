@@ -12,6 +12,7 @@ function VideoConversation() {
   const webrtcClient = useRef(null);
   const remoteVideoRef = useRef(null);
   const localVideoRef = useRef(null);
+  const isIntentionalDisconnect = useRef(false); // Track if disconnect is intentional
 
   useEffect(() => {
     // Cleanup on unmount
@@ -23,6 +24,8 @@ function VideoConversation() {
   }, []);
 
   const handleConnect = async () => {
+    // Reset the intentional disconnect flag when starting a new connection
+    isIntentionalDisconnect.current = false;
     setHasStarted(true);
     setConnectionState('connecting');
     await startConversation();
@@ -30,41 +33,67 @@ function VideoConversation() {
 
   const startConversation = async () => {
     try {
-      // Initialize WebRTC client
+      // Initialize WebRTC client with RTVI
       webrtcClient.current = new WebRTCClient('http://localhost:8080');
       
       // Set up callbacks
       webrtcClient.current.on('track', (remoteStream) => {
-        console.log('Remote stream received');
         if (remoteVideoRef.current) {
           remoteVideoRef.current.srcObject = remoteStream;
         }
       });
 
+      webrtcClient.current.on('botReady', () => {
+        // Update local video
+        if (localVideoRef.current) {
+          const localStream = webrtcClient.current.getLocalStream();
+          if (localStream) {
+            localVideoRef.current.srcObject = localStream;
+          }
+        }
+        
+        // Update remote video with bot stream
+        if (remoteVideoRef.current) {
+          const remoteStream = webrtcClient.current.getRemoteStream();
+          if (remoteStream) {
+            remoteVideoRef.current.srcObject = remoteStream;
+          }
+        }
+      });
+
+      webrtcClient.current.on('connected', () => {
+        setConnectionState('connected');
+        
+        // Update local video after connection
+        setTimeout(() => {
+          if (localVideoRef.current) {
+            const localStream = webrtcClient.current.getLocalStream();
+            if (localStream) {
+              localVideoRef.current.srcObject = localStream;
+            }
+          }
+        }, 500);
+      });
+
       webrtcClient.current.on('connectionStateChange', (state) => {
-        console.log('Connection state:', state);
         if (state === 'connected') {
           setConnectionState('connected');
         } else if (state === 'failed' || state === 'disconnected') {
-          setError('Connection lost');
-          setConnectionState('error');
+          // Only show error if this wasn't an intentional disconnect
+          if (!isIntentionalDisconnect.current) {
+            setError('Connection lost');
+            setConnectionState('error');
+          }
         }
       });
 
       webrtcClient.current.on('error', (err) => {
         console.error('WebRTC error:', err);
-        setError(err.message);
+        setError(err?.message || (err ? String(err) : 'Connection error'));
         setConnectionState('error');
       });
 
-      // Initialize media and connect
-      await webrtcClient.current.initializeLocalMedia();
-      
-      // Show local video
-      if (localVideoRef.current) {
-        localVideoRef.current.srcObject = webrtcClient.current.getLocalStream();
-      }
-      
+      // Connect using RTVI (it will handle media initialization)
       await webrtcClient.current.connect();
       
     } catch (err) {
@@ -75,26 +104,43 @@ function VideoConversation() {
   };
 
   const handleDisconnect = () => {
+    // Set flag to indicate this is an intentional disconnect
+    isIntentionalDisconnect.current = true;
+    
     if (webrtcClient.current) {
       webrtcClient.current.disconnect();
     }
+    
+    // Clean up video elements
+    if (remoteVideoRef.current) {
+      remoteVideoRef.current.srcObject = null;
+    }
+    if (localVideoRef.current) {
+      localVideoRef.current.srcObject = null;
+    }
+    
     setHasStarted(false);
     setConnectionState('idle');
     setError('');
+    
+    // Reset the flag after a short delay
+    setTimeout(() => {
+      isIntentionalDisconnect.current = false;
+    }, 500);
   };
 
-  const toggleMic = () => {
+  const toggleMic = async () => {
     if (webrtcClient.current) {
       const newState = !isMicEnabled;
-      webrtcClient.current.toggleMicrophone(newState);
+      await webrtcClient.current.toggleMicrophone(newState);
       setIsMicEnabled(newState);
     }
   };
 
-  const toggleCamera = () => {
+  const toggleCamera = async () => {
     if (webrtcClient.current) {
       const newState = !isCameraEnabled;
-      webrtcClient.current.toggleCamera(newState);
+      await webrtcClient.current.toggleCamera(newState);
       setIsCameraEnabled(newState);
     }
   };
@@ -245,7 +291,6 @@ function VideoConversation() {
               className="control-button disconnect"
               onClick={handleDisconnect}
               title="Disconnect"
-              disabled={connectionState === 'error'}
             >
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08c-.18-.17-.29-.42-.29-.7 0-.28.11-.53.29-.71C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28-.79-.74-1.68-1.36-2.66-1.85-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/>
