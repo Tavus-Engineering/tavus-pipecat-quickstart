@@ -5,13 +5,35 @@ import './App.css';
 function App() {
   return (
     <div className="app-container">
-      <div className="logo-container">
-        <img 
-          src="https://cdn.prod.website-files.com/68c8e57d6e512b9573db146f/68c8e57e6e512b9573db1aa0_logo.svg" 
-          alt="Tavus" 
-          className="app-logo"
-        />
-      </div>
+      {/* Header */}
+      <header className="main-header">
+        <div className="header-content">
+          <div className="header-left">
+            <div className="logo">TAVUS</div>
+            <nav className="main-nav">
+              <a href="#" className="nav-link">DOCS</a>
+              <a href="#" className="nav-link">PRICING</a>
+              <a href="#" className="nav-link">ENTERPRISE</a>
+              <a href="#" className="nav-link">CAREERS</a>
+            </nav>
+          </div>
+          <div className="header-right">
+            <button className="btn-login">LOGIN</button>
+            <button className="btn-get-started">GET STARTED</button>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="hero-section">
+        <h1 className="hero-title">AI Humans, at your service</h1>
+        <p className="hero-subtitle">
+          They're the best of both worlds: the emotional intelligence of humanity, with the reach and reliability of machines.
+        </p>
+        <button className="btn-signup">SIGN UP FOR FREE</button>
+      </section>
+
+      {/* Video Component */}
       <VideoConversation />
     </div>
   );
