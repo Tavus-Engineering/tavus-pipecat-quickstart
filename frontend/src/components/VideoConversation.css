@@ -1,81 +1,81 @@
 /* CVI Portal Container */
 .cvi-portal-container {
-  width: 100%;
-  max-width: 800px;
-  margin: 2rem auto;
+  width: 80%; /* 20% reduction */
+  max-width: 640px; /* 20% reduction from 800px */
+  margin: 0.8rem auto; /* 20% reduction */
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem; /* 20% reduction */
 }
 
 /* CVI Portal Window */
 .cvi-portal-window {
-  background: #000;
-  border: 2px solid #000;
+  background: var(--tan); /* tan background for the whole window */
+  border: 1.2px solid var(--ink); /* 20% reduction from 1.5px */
   border-radius: 0;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  overflow: visible; /* allow shadow to show */
   position: relative;
+  margin: 4.8px; /* 20% reduction from 6px */
 }
 
-/* CVI Portal Header */
-.cvi-portal-header {
-  background: #000;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #333;
+/* Black shadow effect */
+.cvi-portal-window::after {
+  content: "";
+  position: absolute;
+  top: 4.8px; /* 20% reduction from 6px */
+  left: 4.8px; /* 20% reduction from 6px */
+  right: -4.8px; /* 20% reduction from -6px */
+  bottom: -4.8px; /* 20% reduction from -6px */
+  background: var(--ink);
+  z-index: -1;
+  border-radius: 0;
+}
+
+:root{
+  --tan: #efe4d0;        /* tweak to your tan */
+  --ink: #000;           /* black lines/shadow */
+}
+
+/* The tan box */
+.top-header{
+  position: relative;
+  height: 40px;               /* 20% reduction from 50px */
   display: flex;
   align-items: center;
   justify-content: center;
+  background:
+    /* 1) scanlines on top */
+    repeating-linear-gradient(
+      to bottom,
+      var(--ink) 0 0.8px,     /* 20% reduction from 1px */
+      transparent 0.8px 3.2px  /* 20% reduction from 4px */
+    ),
+    /* 2) tan fill underneath */
+    var(--tan);
+  border: 0px solid var(--ink); /* thin black border around tan header */
+  z-index: 2;                 /* tan box on top */
+  margin: 0;                  /* no margin */
+}
+
+
+
+/* Center title with little line clusters on both sides */
+.top-header .title{
   position: relative;
-}
-
-.cvi-portal-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: repeating-linear-gradient(
-    90deg,
-    #fff 0px,
-    #fff 1px,
-    transparent 1px,
-    transparent 2px
-  );
-}
-
-.cvi-portal-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: repeating-linear-gradient(
-    90deg,
-    #fff 0px,
-    #fff 1px,
-    transparent 1px,
-    transparent 2px
-  );
-}
-
-.cvi-portal-title {
-  color: white;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  padding: 0 11.2px; /* 20% reduction from 14px */
+  background: var(--tan);     /* cuts through the scanlines */
+  font: 600 12px/1.2 "Courier New", monospace; /* 20% reduction from 15px */
+  letter-spacing: .64px; /* 20% reduction from .8px */
   text-transform: uppercase;
-  font-family: 'Courier New', monospace;
-  position: relative;
-  z-index: 1;
 }
+
+
 
 /* CVI Portal Content */
 .cvi-portal-content {
   position: relative;
-  background: #000;
+  background: var(--tan); /* tan background around video */
+  padding: 6.4px; /* 20% reduction from 8px */
 }
 
 .video-container {
@@ -84,6 +84,19 @@
   aspect-ratio: 16/9;
   background: #000;
   overflow: hidden;
+  margin: 0px; /* space for shadow */
+}
+
+/* Black shadow effect for video */
+.video-container::after {
+  content: "";
+  position: absolute;
+  top: 2.4px; /* 20% reduction from 3px */
+  left: 2.4px; /* 20% reduction from 3px */
+  right: -2.4px; /* 20% reduction from -3px */
+  bottom: -2.4px; /* 20% reduction from -3px */
+  background: var(--ink);
+  z-index: -1;
 }
 
 .video-stream {
@@ -186,9 +199,9 @@
 }
 
 .connect-btn {
-  margin-top: 1rem;
+  margin-top: 0.8rem; /* 20% reduction from 1rem */
   display: flex;
-  border: 2px solid #000;
+  border: 1.6px solid #000; /* 20% reduction from 2px */
   cursor: pointer;
   transition: all 0.3s ease;
   overflow: hidden;
@@ -201,7 +214,7 @@
 
 .connect-btn:hover {
   transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3.2px 9.6px rgba(0, 0, 0, 0.3); /* 20% reduction */
 }
 
 .connect-btn:active {
@@ -210,28 +223,28 @@
 
 .connect-btn-green {
   background: #32ff32;
-  padding: 0.8rem 1.2rem;
+  padding: 0.64rem 0.96rem; /* 20% reduction */
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  border-right: 2px solid #000;
-  min-width: 160px;
-  box-shadow: 2px 2px 0px #000;
+  gap: 0.48rem; /* 20% reduction from 0.6rem */
+  border-right: 1.6px solid #000; /* 20% reduction from 2px */
+  min-width: 128px; /* 20% reduction from 160px */
+  box-shadow: 1.6px 1.6px 0px #000; /* 20% reduction */
 }
 
 .connect-btn-square {
-  width: 13px;
-  height: 13px;
+  width: 10.4px; /* 20% reduction from 13px */
+  height: 10.4px; /* 20% reduction from 13px */
   background: #000;
   flex-shrink: 0;
-  border: 1px solid #000;
+  border: 0.8px solid #000; /* 20% reduction from 1px */
 }
 
 .connect-btn-text {
   color: #000;
-  font-size: 0.7rem;
+  font-size: 0.56rem; /* 20% reduction from 0.7rem */
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em; /* 20% reduction from 0.1em */
   text-transform: uppercase;
   font-family: 'Courier New', monospace;
   white-space: nowrap;
@@ -239,19 +252,19 @@
 
 .connect-btn-white {
   background: #fff;
-  padding: 0.8rem;
+  padding: 0.64rem; /* 20% reduction from 0.8rem */
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 64px;
-  box-shadow: 2px 2px 0px #000;
+  min-width: 51.2px; /* 20% reduction from 64px */
+  box-shadow: 1.6px 1.6px 0px #000; /* 20% reduction */
 }
 
 .connect-btn-phone {
-  width: 24px;
-  height: 24px;
+  width: 19.2px; /* 20% reduction from 24px */
+  height: 19.2px; /* 20% reduction from 24px */
   stroke: #000;
-  stroke-width: 2;
+  stroke-width: 1.6; /* 20% reduction from 2 */
 }
 
 .video-overlay p {

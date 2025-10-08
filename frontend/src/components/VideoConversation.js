@@ -102,9 +102,9 @@ function VideoConversation() {
   return (
     <div className="cvi-portal-container">
       <div className="cvi-portal-window">
-        <div className="cvi-portal-header">
-          <div className="cvi-portal-title">CVI PORTAL</div>
-        </div>
+        <header className="top-header">
+          <span className="title">CVI PORTAL</span>
+        </header>
         
         <div className="cvi-portal-content">
           <div className="video-container">
