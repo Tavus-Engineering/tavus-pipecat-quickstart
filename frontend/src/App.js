@@ -23,8 +23,6 @@ function App() {
           </div>
           <div className="header-spacer"></div>
           <div className="header-right">
-            <button className="btn-login">LOGIN</button>
-            <button className="btn-get-started">GET STARTED</button>
           </div>
         </div>
       </header>
@@ -35,7 +33,6 @@ function App() {
         <p className="hero-subtitle" style={{ lineHeight: 1 }}>
           They're the best of both worlds: <br />the emotional intelligence of humanity,<br /> with the reach and reliability of machines.
         </p>
-        <button className="btn-signup">SIGN UP FOR FREE</button>
       </section>
 
       {/* Video Component */}
