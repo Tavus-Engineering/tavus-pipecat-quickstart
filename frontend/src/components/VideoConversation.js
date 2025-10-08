@@ -8,6 +8,7 @@ function VideoConversation() {
   const [error, setError] = useState('');
   const [isMicEnabled, setIsMicEnabled] = useState(true);
   const [isCameraEnabled, setIsCameraEnabled] = useState(true);
+  const [showCharlieLoading, setShowCharlieLoading] = useState(false);
   
   const webrtcClient = useRef(null);
   const remoteVideoRef = useRef(null);
@@ -25,6 +26,7 @@ function VideoConversation() {
   const handleConnect = async () => {
     setHasStarted(true);
     setConnectionState('connecting');
+    setShowCharlieLoading(true);
     await startConversation();
   };
 
@@ -38,6 +40,25 @@ function VideoConversation() {
         console.log('Remote stream received');
         if (remoteVideoRef.current) {
           remoteVideoRef.current.srcObject = remoteStream;
+          
+          // Wait for video to start playing before hiding Charlie loading
+          const video = remoteVideoRef.current;
+          const checkVideoPlaying = () => {
+            if (video.readyState >= 2 && video.videoWidth > 0 && video.videoHeight > 0) {
+              console.log('Remote video is playing, hiding Charlie loading');
+              setShowCharlieLoading(false);
+            } else {
+              // Check again in 100ms if video isn't ready yet
+              setTimeout(checkVideoPlaying, 100);
+            }
+          };
+          
+          // Start checking when video starts loading
+          video.addEventListener('loadeddata', checkVideoPlaying);
+          video.addEventListener('canplay', checkVideoPlaying);
+          
+          // Also check immediately in case video is already ready
+          checkVideoPlaying();
         }
       });
 
@@ -45,9 +66,11 @@ function VideoConversation() {
         console.log('Connection state:', state);
         if (state === 'connected') {
           setConnectionState('connected');
+          // Charlie loading will be hidden when video actually starts playing
         } else if (state === 'failed' || state === 'disconnected') {
           setError('Connection lost');
           setConnectionState('error');
+          setShowCharlieLoading(false);
         }
       });
 
@@ -81,6 +104,7 @@ function VideoConversation() {
     setHasStarted(false);
     setConnectionState('idle');
     setError('');
+    setShowCharlieLoading(false);
   };
 
   const toggleMic = () => {
@@ -152,10 +176,23 @@ function VideoConversation() {
               </div>
             )}
 
-            {connectionState === 'connecting' && (
-              <div className="video-overlay">
-                <div className="spinner"></div>
-                <p>Connecting to AI Assistant...</p>
+            {showCharlieLoading && (
+              <div className="video-overlay loading-charlie">
+                <div className="charlie-loading-content">
+                  <div className="charlie-headlines">
+                    <h1 className="charlie-line-1">He sees.</h1>
+                    <h1 className="charlie-line-2">He hears.</h1>
+                    <h1 className="charlie-line-3">He understands.</h1>
+                  </div>
+                  <div className="charlie-description">
+                    <p>Meet Charlie, an AI agent that perceives, reacts, and engages in real conversation.</p>
+                    <p>Chat like he's an old friend—or a new one!</p>
+                  </div>
+                  <div className="charlie-loading-spinner">
+                    <div className="spinner"></div>
+                    <p>Preparing video connection...</p>
+                  </div>
+                </div>
               </div>
             )}
 
