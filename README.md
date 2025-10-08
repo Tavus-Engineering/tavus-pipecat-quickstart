@@ -2,6 +2,20 @@
 
 A complete, production-ready starter project for building conversational AI bots with real-time video using [Pipecat](https://github.com/pipecat-ai/pipecat) and [Tavus](https://www.tavus.io/).
 
+## 🎉 Hackathon Sponsorship
+
+![Tavus Hackathon Sponsor](images/image.png)
+
+**Tavus is proud to be sponsoring this year's hackathon!** We build APIs that let you create video agents, AI humans that can see, hear, and respond face-to-face in real time (and even take actions). Think "AI that actually looks you in the eye."
+
+You can use Tavus in two ways:
+
+**Full Pipeline**: Get everything out of the box: WebRTC, real-time ASR, Tavus LLM, and Phoenix, Sparrow, and Raven models for lifelike video. Spin up conversational video agents in minutes.
+
+**Bring Your Own LLM**: Already have a stack? Plug in your LLM or TTS and use Tavus' perception, timing, and avatars for humanlike video conversations.
+
+This repo implements the **Bring Your Own LLM** flow using Daily's Pipecat for real-time media handling and Google Gemini as the LLM backend.
+
 ## 🎥 What This Project Does
 
 This project creates a conversational AI assistant that:
@@ -12,32 +26,6 @@ This project creates a conversational AI assistant that:
 - **Shows** a realistic video avatar (digital replica) speaking your response
 
 All of this happens in real-time over WebRTC with sub-second latency!
-
-## ⚡ Key Features
-
-### ✨ RTVI Protocol for Reliable Communication
-This project uses the **Pipecat RTVI (Real-Time Voice Interaction)** protocol instead of raw WebRTC. Benefits:
-
-- **No dropped first turn**: The bot's initial greeting is never lost
-- **Better audio quality**: Reduced glitches and improved audio routing
-- **Perfect synchronization**: Client and server stay coordinated
-- **Smoother UX**: Better connection management and error handling
-
-### 🚀 Modern Python Setup
-Uses [`uv`](https://docs.astral.sh/uv/) for fast, reliable Python dependency management:
-
-- **Fast**: Up to 10x faster than pip
-- **Reliable**: Reproducible builds with lock file
-- **Simple**: One command to install everything
-- **Compatible**: Works with existing pip/venv workflows
-
-### 🎬 Powered by Best-in-Class AI Services
-
-- **🎤 Deepgram**: Industry-leading speech-to-text with real-time streaming
-- **🗣️ Cartesia**: Ultra-realistic text-to-speech voices
-- **🧠 Google Gemini**: Powerful LLM for natural conversations
-- **🎥 Tavus**: AI Human Interaction
-- **📡 WebRTC**: Low-latency peer-to-peer communication
 
 ## 🚀 Quick Start
 
