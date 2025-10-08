@@ -137,10 +137,13 @@ See [QUICKSTART.md](QUICKSTART.md#next-steps) for detailed customization example
 
 ## 📚 Learn More
 
+- **[Tavus Docs](https://docs.tavus.io/sections/introduction)** - Tavus API and platform documentation
+- **[About Tavus](https://www.tavus.io/)** - Learn more about Tavus AI video technology
 - **[QUICKSTART.md](QUICKSTART.md)** - Complete setup guide with troubleshooting
 - **[Pipecat Docs](https://docs.pipecat.ai/)** - Framework documentation
 - **[Pipecat Examples](https://github.com/pipecat-ai/pipecat-examples)** - More example projects
 - **[Pipecat Discord](https://discord.gg/pipecat)** - Community support
+
 
 ## 📄 License
 
