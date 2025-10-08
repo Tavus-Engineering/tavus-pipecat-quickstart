@@ -39,41 +39,335 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  justify-content: flex-start;
+  padding: 0;
   position: relative;
 }
 
-.logo-container {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+/* Header Styles */
+.main-header {
+  width: 100%;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+}
+
+.header-content {
+  width: 100%;
   display: flex;
   align-items: center;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 0.75rem 1rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid #000;
+  border-right: 1px solid #000;
+  background: #fff;
+  box-shadow: 2px 2px 0px #000;
+  font-family: 'Courier New', monospace;
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  height: 44px;
+  box-sizing: border-box;
 }
 
-.app-logo {
-  height: 36px;
-  width: auto;
-  display: block;
+.logo:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000;
 }
 
-/* Responsive logo sizing */
-@media (min-width: 768px) {
-  .app-logo {
-    height: 42px;
+.logo:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+.logo-image {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: #000;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border: 2px solid #000;
+  border-right: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 2px 2px 0px #000;
+  font-family: 'Courier New', monospace;
+  position: relative;
+  height: 44px;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.nav-link:last-child {
+  border-right: 2px solid #000;
+}
+
+.nav-link:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000;
+}
+
+.nav-link:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+.header-spacer {
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.btn-login {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-right: 1px solid #000;
+  padding: 0.75rem 1rem;
+  border-radius: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0px #000;
+  font-family: 'Courier New', monospace;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.btn-login:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000;
+}
+
+.btn-login:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+.btn-get-started {
+  background: #E96680;
+  color: #000;
+  border: 2px solid #000;
+  border-left: 1px solid #000;
+  padding: 0.75rem 1rem;
+  border-radius: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0px #000;
+  font-family: 'Courier New', monospace;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.btn-get-started:hover {
+  background: #ff5a8a;
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000;
+}
+
+.btn-get-started:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', 'Times New Roman', serif;
+  font-size: 4rem;
+  font-weight: 400;
+  color: #140206;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #140206;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+}
+
+.btn-signup {
+  background: #E96680;
+  color: #000;
+  border: 2px solid #000;
+  padding: 1.25rem 2.5rem;
+  border-radius: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0px #000;
+  font-family: 'Courier New', monospace;
+  position: relative;
+}
+
+.btn-signup:hover {
+  background: #ff5a8a;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000;
+}
+
+.btn-signup:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .header-content {
+    padding: 1rem 1.5rem;
+  }
+  
+  .header-left {
+    gap: 2rem;
+  }
+  
+  .main-nav {
+    gap: 1.5rem;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
   }
 }
 
-@media (min-width: 1024px) {
-  .app-logo {
-    height: 48px;
+@media (max-width: 768px) {
+  .header-content {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .header-left {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .main-nav {
+    gap: 1rem;
+  }
+  
+  .nav-link {
+    font-size: 0.8rem;
+  }
+  
+  .hero-section {
+    padding: 3rem 1rem;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    padding: 0.75rem;
+  }
+  
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .nav-link {
+    font-size: 0.75rem;
+  }
+  
+  .btn-login,
+  .btn-get-started {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .btn-signup {
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
   }
 }

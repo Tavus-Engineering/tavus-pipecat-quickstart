@@ -1,6 +1,7 @@
 import React from 'react';
 import VideoConversation from './components/VideoConversation';
 import './App.css';
+import tavusLogo from './assets/tavus_io_logo.jpeg';
 
 function App() {
   return (
@@ -9,7 +10,10 @@ function App() {
       <header className="main-header">
         <div className="header-content">
           <div className="header-left">
-            <div className="logo">TAVUS</div>
+            <div className="logo">
+              <img src={tavusLogo} alt="Tavus" className="logo-image" />
+              TAVUS
+            </div>
             <nav className="main-nav">
               <a href="#" className="nav-link">DOCS</a>
               <a href="#" className="nav-link">PRICING</a>
@@ -17,6 +21,7 @@ function App() {
               <a href="#" className="nav-link">CAREERS</a>
             </nav>
           </div>
+          <div className="header-spacer"></div>
           <div className="header-right">
             <button className="btn-login">LOGIN</button>
             <button className="btn-get-started">GET STARTED</button>
@@ -26,7 +31,7 @@ function App() {
 
       {/* Hero Section */}
       <section className="hero-section">
-        <h1 className="hero-title">AI Humans, at your service</h1>
+        <h1 className="hero-title">AI Humans, <br />at your service</h1>
         <p className="hero-subtitle">
           They're the best of both worlds: the emotional intelligence of humanity, with the reach and reliability of machines.
         </p>
