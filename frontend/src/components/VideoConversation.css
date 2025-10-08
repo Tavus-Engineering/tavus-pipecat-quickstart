@@ -6,6 +6,21 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem; /* 20% reduction */
+  transition: all 1.2s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+/* Expanded state when connected */
+.cvi-portal-container.expanded {
+  width: 144%; /* 80% growth from 80% */
+  max-width: 1152px; /* 80% growth from 640px */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  margin: 0;
 }
 
 /* CVI Portal Window */
@@ -303,6 +318,108 @@
   background: rgba(0, 0, 0, 0.95);
 }
 
+/* Charlie Loading Overlay */
+.video-overlay.loading-charlie {
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.charlie-loading-content {
+  text-align: center;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.charlie-headlines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.charlie-line-1,
+.charlie-line-2,
+.charlie-line-3 {
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: white;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  display: block;
+  text-align: center;
+}
+
+.charlie-line-1 {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.charlie-line-2 {
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.charlie-line-3 {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.charlie-description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.charlie-description p {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.4;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.charlie-loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.charlie-loading-spinner .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.charlie-loading-spinner p {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-weight: 500;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .error-icon {
   width: 72px;
   height: 72px;
@@ -331,17 +448,100 @@
   box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
 }
 
-/* Controls bar */
-.video-controls-bar {
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 0;
-  padding: 1.25rem 2rem;
+/* In-video controls */
+.in-video-controls {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  z-index: 10;
+}
+
+.in-video-control-button {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: white;
+  color: #333;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.in-video-control-button:hover {
+  background: #f5f5f5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.in-video-control-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.in-video-control-button svg {
+  width: 20px;
+  height: 20px;
+  fill: #333;
+}
+
+.in-video-control-button.disabled {
+  background: #f0f0f0;
+  color: #999;
+}
+
+.in-video-control-button.disabled svg {
+  fill: #999;
+}
+
+.in-video-control-button.disconnect {
+  background: #ff6b6b;
+  color: white;
+}
+
+.in-video-control-button.disconnect svg {
+  fill: white;
+}
+
+.in-video-control-button.disconnect:hover {
+  background: #ff5252;
+}
+
+/* Status indicator minimal */
+.status-indicator-minimal {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.status-indicator-minimal .status-dot {
+  width: 8px;
+  height: 8px;
+}
+
+.status-indicator-minimal .status-text {
+  font-size: 0.75rem;
+  color: white;
+  font-weight: 500;
+}
+
+/* Hide the old controls bar */
+.video-controls-bar {
+  display: none;
 }
 
 .status-indicator {
@@ -470,6 +670,12 @@
     width: 64px;
     height: 64px;
   }
+
+  .charlie-line-1,
+  .charlie-line-2,
+  .charlie-line-3 {
+    font-size: 2.75rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -529,6 +735,16 @@
     height: 56px;
   }
 
+  .charlie-line-1,
+  .charlie-line-2,
+  .charlie-line-3 {
+    font-size: 2.25rem;
+  }
+
+  .charlie-description p {
+    font-size: 1rem;
+  }
+
   .connect-btn {
     padding: 1rem 2.5rem;
     font-size: 1rem;
@@ -575,6 +791,20 @@
   .phone-icon {
     width: 48px;
     height: 48px;
+  }
+
+  .charlie-line-1,
+  .charlie-line-2,
+  .charlie-line-3 {
+    font-size: 1.875rem;
+  }
+
+  .charlie-description p {
+    font-size: 0.9rem;
+  }
+
+  .charlie-loading-content {
+    gap: 1.5rem;
   }
 
   .connect-btn {
