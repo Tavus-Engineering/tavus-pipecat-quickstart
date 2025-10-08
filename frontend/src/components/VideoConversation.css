@@ -346,17 +346,100 @@
   box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
 }
 
-/* Controls bar */
-.video-controls-bar {
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 0;
-  padding: 1.25rem 2rem;
+/* In-video controls */
+.in-video-controls {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  z-index: 10;
+}
+
+.in-video-control-button {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: white;
+  color: #333;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.in-video-control-button:hover {
+  background: #f5f5f5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.in-video-control-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.in-video-control-button svg {
+  width: 20px;
+  height: 20px;
+  fill: #333;
+}
+
+.in-video-control-button.disabled {
+  background: #f0f0f0;
+  color: #999;
+}
+
+.in-video-control-button.disabled svg {
+  fill: #999;
+}
+
+.in-video-control-button.disconnect {
+  background: #ff6b6b;
+  color: white;
+}
+
+.in-video-control-button.disconnect svg {
+  fill: white;
+}
+
+.in-video-control-button.disconnect:hover {
+  background: #ff5252;
+}
+
+/* Status indicator minimal */
+.status-indicator-minimal {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.status-indicator-minimal .status-dot {
+  width: 8px;
+  height: 8px;
+}
+
+.status-indicator-minimal .status-text {
+  font-size: 0.75rem;
+  color: white;
+  font-weight: 500;
+}
+
+/* Hide the old controls bar */
+.video-controls-bar {
+  display: none;
 }
 
 .status-indicator {
