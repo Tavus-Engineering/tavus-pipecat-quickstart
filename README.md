@@ -6,7 +6,7 @@ A complete, production-ready starter project for building conversational AI bots
 
 ![Tavus Hackathon Sponsor](images/image.png)
 
-**Tavus is proud to be sponsoring this year's hackathon!** We build APIs that let you create video agents, AI humans that can see, hear, and respond face-to-face in real time (and even take actions). Think "AI that actually looks you in the eye."
+**Tavus is proud to be sponsoring this year's hackathon!** We build APIs that let you create video agents, AI humans that can see, hear, and respond face-to-face in real time (and even take actions).
 
 You can use Tavus in two ways:
 
