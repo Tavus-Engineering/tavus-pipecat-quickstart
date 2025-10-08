@@ -1,92 +1,91 @@
-/* Main container with new design */
-.home-box-new {
-  width: 70vw;
-  max-width: 900px;
+/* CVI Portal Container */
+.cvi-portal-container {
+  width: 80%; /* 20% reduction */
+  max-width: 640px; /* 20% reduction from 800px */
+  margin: 0.8rem auto; /* 20% reduction */
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem; /* 20% reduction */
 }
 
-.home-box {
-  background: #140206;
+/* CVI Portal Window */
+.cvi-portal-window {
+  background: var(--tan); /* tan background for the whole window */
+  border: 1.2px solid var(--ink); /* 20% reduction from 1.5px */
   border-radius: 0;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  overflow: visible; /* allow shadow to show */
   position: relative;
+  margin: 4.8px; /* 20% reduction from 6px */
 }
 
-/* Support design header */
-.support-design {
-  background: #140206;
-  padding: 1.5rem 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* Black shadow effect */
+.cvi-portal-window::after {
+  content: "";
+  position: absolute;
+  top: 4.8px; /* 20% reduction from 6px */
+  left: 4.8px; /* 20% reduction from 6px */
+  right: -4.8px; /* 20% reduction from -6px */
+  bottom: -4.8px; /* 20% reduction from -6px */
+  background: var(--ink);
+  z-index: -1;
+  border-radius: 0;
 }
 
-.support-design-box {
+:root{
+  /* CVI Portal Colors */
+  --tan: #efe4d0;        /* tweak to your tan */
+  --ink: #000;           /* black lines/shadow */
+  
+  /* Button Variables */
+  --button-font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  --button-font-weight: 400;
+  --button-letter-spacing: 0.1em;
+  
+  /* Video Controls */
+  --control-button-size: 48px;
+  --control-button-gap: 1rem;
+}
+
+/* The tan box */
+.top-header{
+  position: relative;
+  height: 40px;               /* 20% reduction from 50px */
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  background:
+    /* 1) scanlines on top */
+    repeating-linear-gradient(
+      to bottom,
+      var(--ink) 0 0.8px,     /* 20% reduction from 1px */
+      transparent 0.8px 3.2px  /* 20% reduction from 4px */
+    ),
+    /* 2) tan fill underneath */
+    var(--tan);
+  border: 0px solid var(--ink); /* thin black border around tan header */
+  z-index: 2;                 /* tan box on top */
+  margin: 0;                  /* no margin */
 }
 
-/* Decorative lines */
-.os_line_wrap {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
 
-.os_line {
-  width: 2px;
-  height: 12px;
-  background: rgba(255, 255, 255, 0.3);
-  animation: line-pulse 2s ease-in-out infinite;
-}
 
-.os_line:nth-child(1) { animation-delay: 0s; }
-.os_line:nth-child(2) { animation-delay: 0.1s; }
-.os_line:nth-child(3) { animation-delay: 0.2s; }
-.os_line:nth-child(4) { animation-delay: 0.3s; }
-.os_line:nth-child(5) { animation-delay: 0.4s; }
-.os_line:nth-child(6) { animation-delay: 0.5s; }
-.os_line:nth-child(7) { animation-delay: 0.6s; }
-
-@keyframes line-pulse {
-  0%, 100% { 
-    opacity: 0.3;
-  }
-  50% { 
-    opacity: 1;
-  }
-}
-
-/* CVI Portal text */
-.text-size-tiny {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+/* Center title with little line clusters on both sides */
+.top-header .title{
+  position: relative;
+  padding: 0 11.2px; /* 20% reduction from 14px */
+  background: var(--tan);     /* cuts through the scanlines */
+  font: 600 12px/1.2 "Courier New", monospace; /* 20% reduction from 15px */
+  letter-spacing: .64px; /* 20% reduction from .8px */
   text-transform: uppercase;
 }
 
-.text-type-raster {
-  font-family: 'Courier New', monospace;
-}
 
-.hero-type {
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0;
-  white-space: nowrap;
-}
 
-/* Video wrapper */
-.hero-support-wrap {
+/* CVI Portal Content */
+.cvi-portal-content {
   position: relative;
-}
-
-.hero_video-wrap {
-  position: relative;
-  width: 100%;
-  background: #000;
+  background: var(--tan); /* tan background around video */
+  padding: 6.4px; /* 20% reduction from 8px */
 }
 
 .video-container {
@@ -95,6 +94,19 @@
   aspect-ratio: 16/9;
   background: #000;
   overflow: hidden;
+  margin: 0px; /* space for shadow */
+}
+
+/* Black shadow effect for video */
+.video-container::after {
+  content: "";
+  position: absolute;
+  top: 2.4px; /* 20% reduction from 3px */
+  left: 2.4px; /* 20% reduction from 3px */
+  right: -2.4px; /* 20% reduction from -3px */
+  bottom: -2.4px; /* 20% reduction from -3px */
+  background: var(--ink);
+  z-index: -1;
 }
 
 .video-stream {
@@ -111,9 +123,9 @@
   right: 1.5rem;
   width: 180px;
   height: 135px;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
   border: 2px solid rgba(255, 255, 255, 0.2);
   background: #000;
   z-index: 10;
@@ -133,7 +145,7 @@
   background: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 0.25rem 0.75rem;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -146,7 +158,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -158,7 +170,7 @@
 }
 
 .video-overlay.initial {
-  background: rgba(20, 2, 6, 0.95);
+  background: rgba(0, 0, 0, 0.95);
 }
 
 .connect-prompt {
@@ -197,36 +209,72 @@
 }
 
 .connect-btn {
-  margin-top: 1rem;
-  padding: 1.25rem 3rem;
-  background: white;
-  color: #140206;
-  border: none;
-  border-radius: 14px;
-  font-size: 1.125rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  margin-top: 0.8rem; /* 20% reduction from 1rem */
+  display: flex;
+  border: 1.6px solid #000; /* 20% reduction from 2px */
   cursor: pointer;
   transition: all 0.3s ease;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
-}
-
-.connect-btn svg {
-  width: 24px;
-  height: 24px;
+  overflow: hidden;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: var(--button-font-family);
 }
 
 .connect-btn:hover {
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
+  box-shadow: 0 3.2px 9.6px rgba(0, 0, 0, 0.3); /* 20% reduction */
 }
 
 .connect-btn:active {
   transform: scale(0.98);
+}
+
+.connect-btn-green {
+  background: #32ff32;
+  padding: 0.64rem 0.96rem; /* 20% reduction */
+  display: flex;
+  align-items: center;
+  gap: 0.48rem; /* 20% reduction from 0.6rem */
+  border-right: 1.6px solid #000; /* 20% reduction from 2px */
+  min-width: 128px; /* 20% reduction from 160px */
+  box-shadow: 1.6px 1.6px 0px #000; /* 20% reduction */
+}
+
+.connect-btn-square {
+  width: 10.4px; /* 20% reduction from 13px */
+  height: 10.4px; /* 20% reduction from 13px */
+  background: #000;
+  flex-shrink: 0;
+  border: 0.8px solid #000; /* 20% reduction from 1px */
+}
+
+.connect-btn-text {
+  color: #000;
+  font-size: 0.56rem; /* 20% reduction from 0.7rem */
+  font-weight: 700;
+  letter-spacing: 0.08em; /* 20% reduction from 0.1em */
+  text-transform: uppercase;
+  font-family: var(--button-font-family);
+  white-space: nowrap;
+}
+
+.connect-btn-white {
+  background: #fff;
+  padding: 0.64rem; /* 20% reduction from 0.8rem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 51.2px; /* 20% reduction from 64px */
+  box-shadow: 1.6px 1.6px 0px #000; /* 20% reduction */
+}
+
+.connect-btn-phone {
+  width: 19.2px; /* 20% reduction from 24px */
+  height: 19.2px; /* 20% reduction from 24px */
+  stroke: #000;
+  stroke-width: 1.6; /* 20% reduction from 2 */
 }
 
 .video-overlay p {
@@ -252,7 +300,7 @@
 }
 
 .video-overlay.error {
-  background: rgba(20, 2, 6, 0.95);
+  background: rgba(0, 0, 0, 0.95);
 }
 
 .error-icon {
@@ -260,16 +308,16 @@
   height: 72px;
   stroke-width: 2;
   margin-bottom: 0.5rem;
-  color: #ff4757;
+  color: #FF6E82;
 }
 
 .retry-btn {
   margin-top: 1rem;
   padding: 1rem 2.5rem;
   background: white;
-  color: #140206;
+  color: #000;
   border: none;
-  border-radius: 12px;
+  border-radius: 4px;
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -285,14 +333,14 @@
 
 /* Controls bar */
 .video-controls-bar {
-  background: rgba(20, 2, 6, 0.95);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 0;
   padding: 1.25rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -386,7 +434,7 @@
 .control-button.disabled {
   background: rgba(239, 68, 68, 0.2);
   border-color: rgba(239, 68, 68, 0.4);
-  color: #ff4757;
+  color: #FF6E82;
 }
 
 .control-button.disabled:hover:not(:disabled) {
@@ -396,7 +444,7 @@
 .control-button.disconnect {
   background: rgba(239, 68, 68, 0.2);
   border-color: rgba(239, 68, 68, 0.4);
-  color: #ff4757;
+  color: #FF6E82;
 }
 
 .control-button.disconnect:hover:not(:disabled) {
@@ -406,16 +454,8 @@
 
 /* Responsive design */
 @media (max-width: 1024px) {
-  .home-box-new {
-    width: 85vw;
-  }
-
-  .support-design {
-    padding: 1.25rem 1.5rem;
-  }
-
-  .support-design-box {
-    gap: 1rem;
+  .cvi-portal-container {
+    max-width: 90vw;
   }
 
   .video-controls-bar {
@@ -433,30 +473,9 @@
 }
 
 @media (max-width: 768px) {
-  .home-box-new {
-    width: 95vw;
+  .cvi-portal-container {
+    max-width: 95vw;
     gap: 1rem;
-  }
-
-  .support-design {
-    padding: 1rem;
-  }
-
-  .support-design-box {
-    gap: 0.75rem;
-  }
-
-  .os_line_wrap {
-    gap: 3px;
-  }
-
-  .os_line {
-    width: 1.5px;
-    height: 10px;
-  }
-
-  .text-size-tiny {
-    font-size: 0.65rem;
   }
 
   .video-container {
@@ -522,23 +541,6 @@
 }
 
 @media (max-width: 480px) {
-  .support-design-box {
-    gap: 0.5rem;
-  }
-
-  .os_line_wrap {
-    gap: 2px;
-  }
-
-  .os_line {
-    width: 1px;
-    height: 8px;
-  }
-
-  .text-size-tiny {
-    font-size: 0.6rem;
-  }
-
   .local-video-preview {
     width: 100px;
     height: 75px;

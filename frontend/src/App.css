@@ -1,3 +1,40 @@
+/* CSS Variables */
+:root {
+  /* Colors */
+  --color-primary: #FF6E82;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-text: #000;
+  
+  /* Typography */
+  --font-family-buttons: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  --font-weight-light: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --letter-spacing-wide: 0.06em;
+  --letter-spacing-normal: 0.035em;
+  
+  /* Button Styles */
+  --button-padding: 0.75rem 1rem;
+  --button-padding-large: 0.875rem 1.75rem;
+  --button-border: 1px solid var(--color-black);
+  --button-border-thick: 1.4px solid var(--color-black);
+  --button-shadow: 2px 2px 0px var(--color-black);
+  --button-shadow-small: 1px 1px 0px var(--color-black);
+  --button-shadow-large: 4px 4px 0px var(--color-black);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  /* Transitions */
+  --transition-fast: all 0.2s ease;
+  --transition-normal: all 0.3s ease;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -39,41 +76,232 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  justify-content: flex-start;
+  padding: 0;
   position: relative;
 }
 
-.logo-container {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+/* Header Styles */
+.main-header {
+  width: 100%;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+}
+
+.header-content {
+  width: 100%;
   display: flex;
   align-items: center;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 0.75rem 1rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid #000;
+  border-right: 1px solid #000;
+  background: #fff;
+  box-shadow: 2px 2px 0px #000;
+  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  height: 44px;
+  box-sizing: border-box;
 }
 
-.app-logo {
-  height: 36px;
-  width: auto;
-  display: block;
+.logo:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000;
 }
 
-/* Responsive logo sizing */
-@media (min-width: 768px) {
-  .app-logo {
-    height: 42px;
+.logo:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+.logo-image {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: #000;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid #000;
+  border-right: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 2px 2px 0px #000;
+  font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  position: relative;
+  height: 44px;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.nav-link:last-child {
+  border-right: 2px solid #000;
+}
+
+.nav-link:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000;
+}
+
+.nav-link:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+.header-spacer {
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', 'Times New Roman', serif;
+  font-size: 4rem;
+  font-weight: 400;
+  color: #140206;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #140206;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .header-content {
+    padding: 1rem 1.5rem;
+  }
+  
+  .header-left {
+    gap: 2rem;
+  }
+  
+  .main-nav {
+    gap: 1.5rem;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
   }
 }
 
-@media (min-width: 1024px) {
-  .app-logo {
-    height: 48px;
+@media (max-width: 768px) {
+  .header-content {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
   }
+  
+  .header-left {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .main-nav {
+    gap: 1rem;
+  }
+  
+  .nav-link {
+    font-size: 0.8rem;
+  }
+  
+  .hero-section {
+    padding: 3rem 1rem;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    padding: 0.75rem;
+  }
+  
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .nav-link {
+    font-size: 0.75rem;
+  }
+  
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
 }

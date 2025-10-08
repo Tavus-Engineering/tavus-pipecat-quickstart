@@ -100,95 +100,78 @@ function VideoConversation() {
   };
 
   return (
-    <div className="home-box-new">
-      <div className="home-box">
-        <div className="support-design">
-          <div className="support-design-box">
-            <div className="os_line_wrap">
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-            </div>
-            <p className="text-size-tiny text-type-raster hero-type">CVI Portal</p>
-            <div className="os_line_wrap">
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-              <div className="os_line"></div>
-            </div>
-          </div>
-        </div>
-
-        <div className="hero-support-wrap">
-          <div className="hero_video-wrap">
-            <div className="video-container">
-              <video 
-                ref={remoteVideoRef}
-                autoPlay 
-                playsInline
-                className="video-stream"
-              />
-              
-              {/* Local video preview in corner */}
-              {hasStarted && (
-                <div className="local-video-preview">
-                  <video 
-                    ref={localVideoRef}
-                    autoPlay 
-                    muted 
-                    playsInline
-                    className="local-video"
-                  />
-                  <span className="local-video-label">You</span>
-                </div>
-              )}
-              
-              {connectionState === 'idle' && (
-                <div className="video-overlay initial">
-                  <div className="connect-prompt">
-                    <svg className="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <h3>Ready to Connect</h3>
-                    <p>Start your Conversation with Pipecat and Tavus</p>
-                    <button onClick={handleConnect} className="connect-btn">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-                      </svg>
-                      Connect
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {connectionState === 'connecting' && (
-                <div className="video-overlay">
-                  <div className="spinner"></div>
-                  <p>Connecting to AI Assistant...</p>
-                </div>
-              )}
-
-              {connectionState === 'error' && (
-                <div className="video-overlay error">
-                  <svg className="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="12" cy="12" r="10" strokeWidth="2"/>
-                    <line x1="12" y1="8" x2="12" y2="12" strokeWidth="2" strokeLinecap="round"/>
-                    <line x1="12" y1="16" x2="12.01" y2="16" strokeWidth="2" strokeLinecap="round"/>
+    <div className="cvi-portal-container">
+      <div className="cvi-portal-window">
+        <header className="top-header">
+          <span className="title">CVI PORTAL</span>
+        </header>
+        
+        <div className="cvi-portal-content">
+          <div className="video-container">
+            <video 
+              ref={remoteVideoRef}
+              autoPlay 
+              playsInline
+              className="video-stream"
+            />
+            
+            {/* Local video preview in corner */}
+            {hasStarted && (
+              <div className="local-video-preview">
+                <video 
+                  ref={localVideoRef}
+                  autoPlay 
+                  muted 
+                  playsInline
+                  className="local-video"
+                />
+                <span className="local-video-label">You</span>
+              </div>
+            )}
+            
+            {connectionState === 'idle' && (
+              <div className="video-overlay initial">
+                <div className="connect-prompt">
+                  <svg className="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <p>{error || 'Connection failed'}</p>
-                  <button onClick={handleConnect} className="retry-btn">
-                    Retry Connection
+                  <h3>Ready to Connect</h3>
+                  <p>Start your Conversation with Pipecat and Tavus</p>
+                  <button onClick={handleConnect} className="connect-btn">
+                    <div className="connect-btn-green">
+                      <div className="connect-btn-square"></div>
+                      <span className="connect-btn-text">ANSWER THE CALL</span>
+                    </div>
+                    <div className="connect-btn-white">
+                      <svg className="connect-btn-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
                   </button>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
+
+            {connectionState === 'connecting' && (
+              <div className="video-overlay">
+                <div className="spinner"></div>
+                <p>Connecting to AI Assistant...</p>
+              </div>
+            )}
+
+            {connectionState === 'error' && (
+              <div className="video-overlay error">
+                <svg className="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="12" r="10" strokeWidth="2"/>
+                  <line x1="12" y1="8" x2="12" y2="12" strokeWidth="2" strokeLinecap="round"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+                <p>{error || 'Connection failed'}</p>
+                <button onClick={handleConnect} className="retry-btn">
+                  Retry Connection
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
