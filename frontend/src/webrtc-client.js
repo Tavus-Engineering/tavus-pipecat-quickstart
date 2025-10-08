@@ -75,22 +75,6 @@ export class WebRTCClient {
       
       await this.peerConnection.setLocalDescription(offer);
 
-      // Wait for ICE gathering to complete
-      if (this.peerConnection.iceGatheringState !== 'complete') {
-        await new Promise((resolve) => {
-          const checkState = () => {
-            if (this.peerConnection.iceGatheringState === 'complete') {
-              this.peerConnection.removeEventListener('icegatheringstatechange', checkState);
-              resolve();
-            }
-          };
-          this.peerConnection.addEventListener('icegatheringstatechange', checkState);
-          checkState();
-          // Fallback timeout after 3 seconds
-          setTimeout(resolve, 3000);
-        });
-      }
-
       console.log('Sending offer to Pipecat server...');
       
       // Send offer to Pipecat bot with the format it expects
