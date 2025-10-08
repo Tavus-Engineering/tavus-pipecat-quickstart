@@ -10,11 +10,11 @@ A complete, production-ready starter project for building conversational AI bots
 
 You can use Tavus in two ways:
 
-**Full Pipeline**: Get everything out of the box: WebRTC, real-time ASR, Tavus LLM, and Phoenix, Sparrow, and Raven models for lifelike video. Spin up conversational video agents in minutes.
+[**Full Pipeline**](https://docs.tavus.io/sections/conversational-video-interface/quickstart/use-the-full-pipeline): Get everything out of the box: WebRTC, real-time ASR, Tavus LLM, and Phoenix, Sparrow, and Raven models for lifelike video. Spin up conversational video agents in minutes.
 
-**Bring Your Own LLM**: Already have a stack? Plug in your LLM or TTS and use Tavus' perception, timing, and avatars for humanlike video conversations.
+[**Bring Your Own LLM**](https://docs.tavus.io/sections/conversational-video-interface/persona/llm#custom-llms): Already have a stack? Plug in your LLM or TTS and use Tavus' perception, timing, and avatars for humanlike video conversations.
 
-This repo implements the **Bring Your Own LLM** flow using Daily's Pipecat for real-time media handling and Google Gemini as the LLM backend.
+This repo implements the **Bring Your Own LLM** flow using [Daily's Pipecat](https://docs.pipecat.ai/getting-started/introduction) for real-time media handling and [Google Gemini](https://blog.google/technology/ai/google-gemini-ai/) as the LLM backend.
 
 ## 🎥 What This Project Does
 
