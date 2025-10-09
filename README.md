@@ -1,6 +1,6 @@
-# Tavus Pipecat Quickstart
+# Tavus Quickstart (Hackathon edition) powered by Pipecat and Gemini
 
-A complete, production-ready starter project for building conversational AI bots with real-time video using [Pipecat](https://github.com/pipecat-ai/pipecat) and [Tavus](https://www.tavus.io/).
+A complete, production-ready starter project for building conversational AI bots with real-time video using [Pipecat](https://github.com/pipecat-ai/pipecat), [Tavus](https://www.tavus.io/) and [Gemini](https://gemini.google.com/app)
 
 ## 🎉 Hackathon Sponsorship
 
